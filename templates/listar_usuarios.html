@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}SisProt - Gerenciar Atendentes{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Gerenciar Atendentes</h1>
+  <a href="/cadastro_atendente" class="btn">Novo Atendente</a>
+  <br><br>
+
+  {% if usuarios %}
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Email</th>
+        <th>Perfil</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for u in usuarios %}
+      <tr>
+        <td>{{ u[1] }}</td>
+        <td>{{ u[2] }}</td>
+        <td>{{ u[3] }}</td>
+        <td>{{ u[4] }}</td>
+        <td><a href="/excluir_usuario/{{ u[0] }}" onclick="return confirm('Tem certeza que deseja excluir este atendente?')">Excluir</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>Nenhum atendente cadastrado.</p>
+  {% endif %}
+</div>
+{% endblock %}

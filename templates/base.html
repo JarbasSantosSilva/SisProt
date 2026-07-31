@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}SisProt{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header role="banner">
+  <h1>SisProt</h1>
+  <nav role="navigation" aria-label="Menu Principal">
+    {% if session.get('usuario_nome') %}
+      <a href="/nova_solicitacao">Nova Solicitação</a>
+      <a href="/minhas_solicitacoes">Minhas Solicitações</a>
+      {% if session.get('usuario_perfil') == 'atendente' or session.get('usuario_perfil') == 'admin' %}
+        <a href="/painel_atendente">Painel do Atendente</a>
+      {% endif %}
+      {% if session.get('usuario_perfil') == 'admin' %}
+        <a href="/listar_usuarios">Gerenciar Atendentes</a>
+      {% endif %}
+      <a href="/logout">Sair ({{ session.get('usuario_nome') }})</a>
+    {% else %}
+      <a href="/login">Entrar</a>
+      <a href="/cadastro">Cadastrar-se</a>
+    {% endif %}
+  </nav>
+</header>
+
+<div class="container" role="main">
+  {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

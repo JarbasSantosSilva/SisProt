@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}SisProt - Início{% endblock %}
+
+{% block content %}
+<div class="card">
+  {% if session.get('usuario_nome') %}
+    <h1>Bem-vindo, {{ session.get('usuario_nome') }}!</h1>
+    <p>Use o menu acima para navegar pelo sistema.</p>
+  {% else %}
+    <h1>Bem-vindo ao SisProt</h1>
+    <p>Sistema de Protocolo Digital da Creche Municipal.</p>
+    <br>
+    <a href="/login" class="btn">Entrar</a>
+    <a href="/cadastro" class="btn">Cadastrar-se</a>
+  {% endif %}
+</div>
+{% endblock %}

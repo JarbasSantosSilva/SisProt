@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}SisProt - Histórico do Protocolo{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Protocolo: {{ solicitacao[1] }}</h1>
+  <p><strong>Tipo:</strong> {{ solicitacao[7] }}</p>
+  <p><strong>Descrição:</strong> {{ solicitacao[4] }}</p>
+  <p><strong>Status atual:</strong> {{ solicitacao[5] }}</p>
+  <p><strong>Aberto em:</strong> {{ solicitacao[6] }}</p>
+</div>
+
+<div class="card">
+  <h2>Histórico de Tramitação</h2>
+  {% if tramitacoes %}
+    {% for t in tramitacoes %}
+      <p><strong>{{ t[5] }}</strong> — {{ t[3] }} — {{ t[4] }} — por {{ t[6] }}</p>
+    {% endfor %}
+  {% else %}
+    <p>Nenhuma movimentação registrada ainda.</p>
+  {% endif %}
+</div>
+{% endblock %}

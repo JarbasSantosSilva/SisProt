@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}SisProt - Nova Solicitação{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Nova Solicitação</h1>
+  <form action="/nova_solicitacao" method="POST">
+  <label for="id_tipo">Tipo de Solicitação:</label>
+  <select id="id_tipo" name="id_tipo" required aria-required="true">
+    {% for tipo in tipos %}
+      <option value="{{ tipo[0] }}">{{ tipo[1] }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="descricao">Descrição:</label>
+  <textarea id="descricao" name="descricao" rows="5" required aria-required="true"></textarea>
+
+  <button type="submit">Enviar Solicitação</button>
+</form>
+</div>
+<script src="{{ url_for('static', filename='js/nova_solicitacao.js') }}"></script>
+{% endblock %}

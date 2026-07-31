@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}SisProt - Painel do Atendente{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Painel do Atendente</h1>
+
+  {% if solicitacoes %}
+  <table>
+    <thead>
+      <tr>
+        <th>Protocolo</th>
+        <th>Solicitante</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+        <th>Status</th>
+        <th>Data</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in solicitacoes %}
+      <tr>
+        <td>{{ s[1] }}</td>
+        <td>{{ s[7] }}</td>
+        <td>{{ s[8] }}</td>
+        <td>{{ s[4] }}</td>
+        <td>{{ s[5] }}</td>
+        <td>{{ s[6] }}</td>
+        <td>
+          <a href="/deferir/{{ s[0] }}">Deferir</a>
+          <a href="/indeferir/{{ s[0] }}">Indeferir</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>Nenhuma solicitação encontrada.</p>
+  {% endif %}
+</div>
+{% endblock %}

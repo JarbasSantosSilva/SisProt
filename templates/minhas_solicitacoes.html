@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}SisProt - Minhas Solicitações{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Minhas Solicitações</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Protocolo</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+        <th>Status</th>
+        <th>Data</th>
+        <th>Detalhes</th>
+      </tr>
+    </thead>
+    <tbody id="tabela-solicitacoes">
+      <tr><td colspan="6">Carregando...</td></tr>
+    </tbody>
+  </table>
+</div>
+<script src="{{ url_for('static', filename='js/solicitacoes.js') }}"></script>
+{% endblock %}
