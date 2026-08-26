@@ -1,31 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
-import pymysql
-import os
 import datetime
+from extensoes import bcrypt
 
-load_dotenv()
 
 app = Flask(__name__)
-
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-
-bcrypt = Bcrypt(app)
-
-def get_db():
-    return pymysql.connect(
-        host=os.getenv('DB_HOST'),
-        port=int(os.getenv('DB_PORT', 3306)),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
-        database=os.getenv('DB_NAME'),
-        cursorclass=pymysql.cursors.Cursor
-    )
-
-@app.route('/')
-def index():
-    return render_template('index.html')
+bcrypt.init_app(app)
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
